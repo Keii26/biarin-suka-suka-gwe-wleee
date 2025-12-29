@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pertanyaan Penting</title>
+    <style>
+        /* Setup Background & Tema Gelap */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f0f1a; /* Hitam kebiruan dalam */
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        h1 { 
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8);
+            margin-bottom: 50px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        .container { 
+            position: relative; 
+            width: 100%; 
+            height: 200px; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px; /* Jarak antar tombol */
+        }
+        
+        /* Desain Tombol Glow Ungu */
+        button {
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border: 2px solid #a855f7;
+            border-radius: 50px;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Efek Hover Glow */
+        button:hover {
+            background-color: #a855f7;
+            box-shadow: 0 0 30px rgba(168, 85, 247, 0.8);
+            transform: scale(1.1);
+        }
+
+        /* Tombol G yang akan lari */
+        #btnG {
+            position: absolute; /* Tetap absolute untuk fitur lari */
+            left: calc(50% + 50px);
+        }
+
+        #btnMau {
+            position: relative;
+            right: 70px;
+        }
+
+        #pesan {
+            display: none;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #a855f7;
+            text-shadow: 0 0 20px rgba(168, 85, 247, 1);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="judul">Kamu mau g jadi pacar aku?</h1>
+
+    <div class="container" id="mainContainer">
+        <button id="btnMau" onclick="pilihMau()">Mauuuu</button>
+        <button id="btnG" onmouseover="lari(this)" onclick="lari(this)">G</button>
+        <div id="pesan">YEYYYYYYY! 💜</div>
+    </div>
+
+    <script>
+        const btnG = document.getElementById('btnG');
+        const btnMau = document.getElementById('btnMau');
+        const judul = document.getElementById('judul');
+        const pesan = document.getElementById('pesan');
+
+        function lari(tombol) {
+            // Perbaikan: Ganti teks tombol G itu sendiri
+            judul.innerText = "PLISSSSSSS🥺🥺🥺🥺🥺";
+            
+            // Hitung posisi random agar tidak keluar layar
+            const padding = 50;
+            const x = Math.random() * (window.innerWidth - tombol.offsetWidth - padding);
+            const y = Math.random() * (window.innerHeight - tombol.offsetHeight - padding);
+            
+            // Pindahkan posisi tombol
+            tombol.style.position = 'fixed'; // Gunakan fixed agar bebas di layar
+            tombol.style.left = x + 'px';
+            tombol.style.top = y + 'px';
+        }
+
+        function pilihMau() {
+            btnMau.style.display = 'none';
+            btnG.style.display = 'none';
+            judul.style.display = 'none';
+            pesan.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
